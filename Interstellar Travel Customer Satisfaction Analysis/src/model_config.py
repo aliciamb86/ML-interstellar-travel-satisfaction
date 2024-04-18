@@ -2,11 +2,15 @@ import yaml
 
 # Defino los best params de mi modelo
 best_params = {
-    'classifier': 'GradientBoostingRegressor',
-    'classifier__max_depth': 10,
-    'classifier__min_samples_leaf': 20,
-    'classifier__min_samples_split': 20,
-    'scaler': None
+    'PCA': {
+        'n_components': 11
+    },
+    'GradientBoostingRegressor': {
+        'max_depth': 10,
+        'min_samples_leaf': 20,
+        'min_samples_split': 20,
+        'random_state': 42
+    }
 }
 
 # Guardo el archivo .yaml 
