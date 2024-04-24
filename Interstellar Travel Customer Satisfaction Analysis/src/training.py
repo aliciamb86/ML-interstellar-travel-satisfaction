@@ -1,11 +1,13 @@
 import pandas as pd
 from sklearn.pipeline import Pipeline
 from sklearn.ensemble import GradientBoostingRegressor
-from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import GridSearchCV
 from sklearn.decomposition import PCA
 import pickle
 from sklearn.model_selection import train_test_split 
+from sklearn.pipeline import Pipeline
+from sklearn.decomposition import PCA
+from sklearn.ensemble import GradientBoostingRegressor
+
 
 # Exporto el archivo csv de interstellar_travel_processed
 df = pd.read_csv('../data/processed/interstellar_travel_processed.csv')
@@ -49,37 +51,20 @@ X_test_pca = df_test[['Age', 'Gender', 'Occupation',
                       'Tiempo Espera']]
 y_test_pca = df_test['Customer Satisfaction Score']
 
-# Defino el pipeline para entrenar mi modelo
-pipe_gb = Pipeline(steps=[
-    ('scaler', StandardScaler()),
-    ('pca', PCA(n_components=11)),
-    ('classifier', GradientBoostingRegressor(random_state=42))
+
+# Defino best_model con los best_params del modelo que mejor ha funcionado
+best_model = Pipeline(steps=[
+    ('pca', PCA(n_components=12)),
+    ('classifier', GradientBoostingRegressor(
+        random_state=42,
+        max_depth=10,
+        min_samples_split=10,
+        min_samples_leaf=20
+    ))
 ])
 
-params_gb = {
-    'scaler' : [StandardScaler(), None],
-    'classifier': [GradientBoostingRegressor(random_state=42)],
-    'classifier__max_depth': [10],
-    'classifier__min_samples_split': [20],
-    'classifier__min_samples_leaf': [20]
-}
-
-
-trained_model_9 = GridSearchCV(pipe_gb, params_gb, cv=2, scoring="r2", verbose=2, n_jobs=-1)
-
-# Entrena el modelo
-trained_model_9.fit(X_train_pca, y_train_pca)
-
-# Obtiene los mejores parámetros encontrados
-print(trained_model_9.best_estimator_)
-print(trained_model_9.best_score_)
-print(trained_model_9.best_params_)
-
-best_model = trained_model_9.best_estimator_
 best_model.fit(X_train_pca, y_train_pca)
 
-
-# Guardo el modelo
 filename = '../models/best_model.pkl'
 with open(filename, 'wb') as archivo_salida:
     pickle.dump(best_model, archivo_salida)

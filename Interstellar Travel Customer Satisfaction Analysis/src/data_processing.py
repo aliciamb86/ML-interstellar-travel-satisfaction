@@ -10,6 +10,10 @@ import seaborn as sns
 # Exporto el archivo csv de raw
 df = pd.read_csv('../data/raw/interstellar_travel.csv')
 
+# Guardo información para poder hacer los selectbox de streamlit
+star_system_destination = df[['Star System', 'Destination', 'Distance to Destination (Light-Years)']]
+star_system_destination.to_csv('../app/data/star_system_destination.csv', index=False)
+
 # Relleno los NaN de la columna 'Special Request' por 'Other'
 df['Special Requests'] = df['Special Requests'].fillna('Other')
 
@@ -63,8 +67,9 @@ list_star_system = list((df.groupby('Star System')['Customer Satisfaction Score'
 dict_star_system = {}
 for i in range(len(list_star_system)):
     dict_star_system[list_star_system[i]] = i
-dict_star_system
-df['Star System'] = df['Star System'].map(dict_star_system)
+df_star_system = pd.DataFrame(list(dict_star_system.items()), columns=['star_system', 'num'])
+df_star_system.to_csv('../app/data/star_system.csv', index=False)
+df['Star System'] = df['Star System'].map(df_star_system.set_index('star_system')['num'])
 
 # Hago un mapeo de la columna 'Purpose of Travel' para convertir las diferentes categorías en valores numéricos 
 df['Purpose of Travel'] = df['Purpose of Travel'].map({'Tourism' : 0,

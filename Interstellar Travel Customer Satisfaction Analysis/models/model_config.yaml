@@ -1,7 +1,10 @@
-GradientBoostingRegressor:
-  max_depth: 10
-  min_samples_leaf: 20
-  min_samples_split: 20
-  random_state: 42
-PCA:
-  n_components: 11
+classifier:
+  class_name: GradientBoostingRegressor
+  params:
+    max_depth: 10
+    min_samples_leaf: 20
+    min_samples_split: 10
+    random_state: 42
+pca:
+  n_components: 12
+scaler: None
