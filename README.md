@@ -99,6 +99,7 @@ We developed a **Streamlit** application to personalize and predict satisfaction
 ![design1](./Interstellar%20Travel%20Customer%20Satisfaction%20Analysis/app/img/design3.png)
 ![design1](./Interstellar%20Travel%20Customer%20Satisfaction%20Analysis/app/img/design4.png)
 
+
 ## 👨‍💻 Para el Área de Ciencia de Datos / For Data Science Team
 
 La presentación técnica aborda:  
@@ -137,6 +138,8 @@ The business presentation focuses on:
 ### Requisitos Previos / Prerequisites
 
 - Python 3.x
+  ```bash
+  pip install pandas scikit-learn matplotlib seaborn
 - Las siguientes bibliotecas de Python: pandas, scikit-learn, matplotlib, seaborn, streamlit  
   The following Python libraries: pandas, scikit-learn, matplotlib, seaborn, streamlit
 
@@ -144,13 +147,24 @@ The business presentation focuses on:
 
 1. Clona este repositorio.  
    Clone this repository.
+  ```bash
+  git clone https://github.com/aliciamb86/ML-interstellar-travel-satisfaction.git
+  ```
 2. Accede al directorio del proyecto.  
    Navigate to the project directory.
+  ```bash
+  cd ML-interstellar-travel-satisfaction/Interstellar\ Travel\ Customer\ Satisfaction\ Analysis
+  ```
 3. Ejecuta los notebooks de Jupyter para explorar el análisis y los modelos.  
    Run the Jupyter notebooks to explore the analysis and models.
+  ```bash
+  jupyter notebook
+  ```
 4. Para ejecutar la aplicación en Streamlit, accede a `/app/`.  
    To run the Streamlit app, navigate to `/app/`.
-
+  ```bash
+  cd ML-interstellar-travel-satisfaction/Interstellar\ Travel\ Customer\ Satisfaction\ Analysis\ app
+  ```
 ## 🤝 Contribuciones / Contributions
 
 ¡Las contribuciones son bienvenidas!  
@@ -158,8 +172,11 @@ Contributions are welcome!
 
 1. Haz un fork del repositorio.  
    Fork the repository.
-2. Crea una nueva rama.  
+2. Crea una nueva rama. 
    Create a new branch.
+  ```bash 
+   git checkout -b feature/new-functionality
+  ```
 3. Realiza y envía tus cambios.  
    Make and push your changes.
 4. Abre un Pull Request.  
